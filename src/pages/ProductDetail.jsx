@@ -9,7 +9,7 @@ const ProductDetail = () => {
 
 
        const getProductDetail = async () =>{
-        let res = await axios.get(`https://fakestoreapi.com/products/${id}`)
+        let res = await axios.get(`https://dummyjson.com/products/${id}`)
         setProduct(res?.data)
        
        } 
@@ -26,7 +26,7 @@ const ProductDetail = () => {
           <div className="bg-white shadow-lg rounded-lg p-6 w-[600px] flex gap-6">
             <div className="w-1/2 flex flex-col items-center">
               <img
-                src={product.image}
+                src={product.thumbnail}
                 alt={product.title}
                 className="w-64 h-64 object-contain rounded-lg shadow"
               />
