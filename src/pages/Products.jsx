@@ -2,6 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Pagination } from 'antd';
+import { HiShoppingBag } from "react-icons/hi2";
+
+
+
+
+
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -73,6 +79,8 @@ const Products = () => {
   const paginatedData = data.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
 
+  
+
   return (
     <div className="bg-gray-50 min-h-screen py-[10px]">
        
@@ -87,7 +95,7 @@ const Products = () => {
             setSearch(val?.target.value)
           }}
         />
-        <button onClick={()=>{searchHandle()}} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+        <button onClick={()=>{searchHandle()}} className="px-4 py-2 bg-blue-600 !text-white rounded-md hover:bg-blue-700 transition-colors">
           Qidirish
         </button>
       </div>
@@ -124,22 +132,36 @@ const Products = () => {
             key={item?.id}
           >
             <Link to={`/product-detail/${item?.id}`}>
-              <div className="w-full h-[220px] flex justify-center items-center">
+              <div className="w-full h-[200px] flex justify-center items-center">
                 <img
                   className="w-40 h-40 object-contain"
                   src={item?.thumbnail}
                   alt={item?.title}
                 />
               </div>
-
-              <div className="p-4">
+              </Link>
+              <div className="p-2">
                 <h3 className="text-lg font-semibold text-gray-800 truncate">
                   {item?.title}
                 </h3>
                 <p className="text-gray-500 line-through text-lg">3.000 $</p>
-                <p className="text-xl font-bold text-black mt-2">{item?.price} $</p>
+               
+                <div className="flex items-center justify-between">
+                      <p className="text-xl font-bold text-black ">{item?.price} $</p>
+                      <button
+  className="bg-blue-500 !text-white px-2 py-1 rounded-md hover:bg-blue-600"
+  onClick={() => AddCart() }
+>
+  <HiShoppingBag size={20} /> 
+</button>
+
+
+                </div>
+                
+                
+                
               </div>
-            </Link>
+              
           </div>
         ))}
       </div>
